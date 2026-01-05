@@ -507,11 +507,12 @@ The pipeline is **idempotent** - it can be run multiple times without creating d
 
 #### ✅ End-to-End Pipeline (3/3)
 1. **Local Python Execution**: Full pipeline run with test data
-   - Ingested: 5 studies, 6 sponsors, 6 interventions
-   - Transformed: 5 trials, 5 organizations, 6 drugs
-   - Route extraction: 60% coverage (3/5 trials)
-   - Dosage form extraction: 60% coverage (3/5 trials)
+   - **Test Dataset**: 5 studies, 6 sponsors, 6 interventions (small test dataset)
+   - **Results**: 5 trials, 5 organizations, 6 drugs
+   - **Route extraction**: 60% coverage (3/5 trials) - *Note: Based on test data*
+   - **Dosage form extraction**: 60% coverage (3/5 trials) - *Note: Based on test data*
    - All data loaded to Neo4j successfully
+   - **Production Expected**: 500-2000+ trials with real AACT data
 
 2. **Idempotency Test**: Re-ran pipeline with same data
    - ✅ No duplicates created
@@ -525,9 +526,10 @@ The pipeline is **idempotent** - it can be run multiple times without creating d
    - ✅ All data loaded correctly
 
 #### ✅ Neo4j Verification (6/6)
-- **Node Counts**: 5 trials, 5 organizations, 6 drugs
-- **Relationship Counts**: 5 SPONSORED_BY, 1 COLLABORATES_WITH, 6 TESTS_DRUG
+- **Node Counts** (test dataset): 5 trials, 5 organizations, 6 drugs
+- **Relationship Counts** (test dataset): 5 SPONSORED_BY, 1 COLLABORATES_WITH, 6 TESTS_DRUG
 - **Data Quality**: Routes/dosage forms extracted correctly, names normalized
+- **Note**: These counts are from the test dataset. Production runs with real AACT data will have 500-2000+ trials.
 
 #### ✅ Cypher Query Tests (3/3)
 - Company trials query: Returns correct results
@@ -668,10 +670,11 @@ The pipeline has been thoroughly tested with **56 tests, all passing**. Key outc
 - ✅ **Parquet Files**: 5 staged files created and verified readable
 
 #### Neo4j Graph Verification
-- ✅ **Nodes**: 5 trials, 5 organizations, 6 drugs loaded
-- ✅ **Relationships**: 12 total relationships (5 SPONSORED_BY, 1 COLLABORATES_WITH, 6 TESTS_DRUG)
+- ✅ **Nodes** (test dataset): 5 trials, 5 organizations, 6 drugs loaded
+- ✅ **Relationships** (test dataset): 12 total relationships (5 SPONSORED_BY, 1 COLLABORATES_WITH, 6 TESTS_DRUG)
 - ✅ **Data Quality**: Route/dosage extraction working (60% coverage in test data)
 - ✅ **Query Performance**: All demo queries execute successfully
+- **Note**: Test results based on small test dataset (5 trials). Production runs with real AACT data will scale to 500-2000+ trials with corresponding increases in organizations and drugs.
 
 #### Pipeline Reliability
 - ✅ **Idempotency**: Re-running produces no duplicates
