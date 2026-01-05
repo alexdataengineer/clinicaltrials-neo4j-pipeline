@@ -141,35 +141,8 @@ This query typically returns **500-2000+ studies** depending on the AACT snapsho
 
 ### Graph Schema Diagram
 
-```
-┌─────────────┐
-│   Trial     │
-│─────────────│
-│ nct_id      │
-│ title       │
-│ phase       │
-│ status      │
-│ route       │
-│ dosage_form │
-└──────┬──────┘
-       │
-       │ SPONSORED_BY
-       ├──────────────────┐
-       │                  │
-       │ COLLABORATES_WITH│
-       │                  │
-       │ TESTS_DRUG       │
-       │                  │
-       ▼                  ▼
-┌─────────────┐    ┌─────────────┐
-│Organization │    │    Drug     │
-│─────────────│    │─────────────│
-│ org_id      │    │ drug_id     │
-│ name_norm   │    │ name_norm   │
-│ name_raw    │    │ name_raw    │
-│ agency_class│    └─────────────┘
-└─────────────┘
-```
+<img width="886" height="716" alt="image" src="https://github.com/user-attachments/assets/81c98360-f732-46b3-b7a5-ddafdc89bd7e" />
+
 
 ### Constraints and Indexes
 
