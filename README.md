@@ -645,20 +645,6 @@ The pipeline downloads pipe-delimited files from AACT, which provides a structur
    - Data quality metrics
    - Anomaly detection
 
-## 📄 License
-
-This project is provided as-is for educational and research purposes.
-
-## 🤝 Contributing
-
-Contributions welcome! Please open issues or pull requests.
-
-## 📧 Contact
-
-For questions or issues, please open a GitHub issue.
-
-## 📈 Test Outcomes & Verification
-
 ### Verified Test Results
 
 The pipeline has been thoroughly tested with **56 tests, all passing**. Key outcomes:
@@ -693,4 +679,3 @@ The pipeline is **production-ready** and has been verified to:
 
 ---
 
-**Built with ❤️ for clinical research data engineering**
