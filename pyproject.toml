@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "clinicaltrials-neo4j-pipeline"
+version = "0.1.0"
+description = "End-to-end data pipeline for ClinicalTrials.gov → Neo4j Knowledge Graph"
+authors = ["Data Engineer"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.1.0"
+requests = "^2.31.0"
+neo4j = "^5.14.0"
+python-dotenv = "^1.0.0"
+tqdm = "^4.66.0"
+pyarrow = "^14.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+black = "^23.9.0"
+ruff = "^0.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+
