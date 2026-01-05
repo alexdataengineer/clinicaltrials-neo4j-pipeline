@@ -283,70 +283,8 @@ See `cypher/demo_queries.cypher` for all demo queries.
 
 The pipeline follows a classic ETL (Extract, Transform, Load) pattern with three main stages:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        DATA INGESTION                            │
-│  ┌──────────────┐                                               │
-│  │ AACT Download │ → Download pipe-delimited files (zip)        │
-│  └──────┬───────┘                                               │
-│         │                                                        │
-│  ┌──────▼───────┐                                               │
-│  │   Extract     │ → Unzip to data/raw/extracted/              │
-│  └──────┬───────┘                                               │
-│         │                                                        │
-│  ┌──────▼───────┐                                               │
-│  │ Load Tables  │ → Read studies, sponsors, interventions       │
-│  └──────┬───────┘                                               │
-│         │                                                        │
-│  ┌──────▼───────┐                                               │
-│  │   Filter      │ → Apply criteria (phase, status, min count)  │
-│  └──────┬───────┘                                               │
-└─────────┼───────────────────────────────────────────────────────┘
-          │
-          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      DATA TRANSFORMATION                         │
-│  ┌──────────────┐                                               │
-│  │ Normalize     │ → Clean & normalize org/drug names           │
-│  └──────┬───────┘                                               │
-│         │                                                        │
-│  ┌──────▼───────┐                                               │
-│  │ Extract       │ → Route/dosage form heuristics              │
-│  └──────┬───────┘                                               │
-│         │                                                        │
-│  ┌──────▼───────┐                                               │
-│  │ Generate IDs  │ → Stable hash IDs for deduplication         │
-│  └──────┬───────┘                                               │
-│         │                                                        │
-│  ┌──────▼───────┐                                               │
-│  │ Create Edges  │ → Build relationship mappings               │
-│  └──────┬───────┘                                               │
-│         │                                                        │
-│  ┌──────▼───────┐                                               │
-│  │ Save Staged   │ → Write parquet files to data/staged/      │
-│  └──────┬───────┘                                               │
-└─────────┼───────────────────────────────────────────────────────┘
-          │
-          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                        NEO4J LOADING                             │
-│  ┌──────────────┐                                               │
-│  │ Setup Schema │ → Create constraints & indexes               │
-│  └──────┬───────┘                                               │
-│         │                                                        │
-│  ┌──────▼───────┐                                               │
-│  │ Load Nodes    │ → Batch load Trials, Orgs, Drugs            │
-│  └──────┬───────┘                                               │
-│         │                                                        │
-│  ┌──────▼───────┐                                               │
-│  │ Load Edges    │ → Create relationships (MERGE operations)   │
-│  └──────┬───────┘                                               │
-│         │                                                        │
-│  ┌──────▼───────┐                                               │
-│  │   Complete    │ → Knowledge graph ready for queries         │
-│  └───────────────┘                                               │
-└─────────────────────────────────────────────────────────────────┘
-```
+<img width="696" height="928" alt="image" src="https://github.com/user-attachments/assets/dafcfab0-e0c9-41ea-b142-7f66acb1a636" />
+
 
 ### Component Architecture
 
