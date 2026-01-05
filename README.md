@@ -322,26 +322,8 @@ The pipeline follows a classic ETL (Extract, Transform, Load) pattern with three
 
 ### Data Flow
 
-```
-AACT Data (Zip)
-    ↓
-[Ingest] → Raw DataFrames (studies, sponsors, interventions)
-    ↓
-[Filter] → Filtered DataFrames (≥500 studies, valid phases/status)
-    ↓
-[Transform] → Normalized DataFrames
-    ├── trials (with route/dosage)
-    ├── organizations (deduplicated)
-    ├── drugs (deduplicated)
-    ├── trial_org_edges
-    └── trial_drug_edges
-    ↓
-[Save Parquet] → Staged files (data/staged/*.parquet)
-    ↓
-[Load to Neo4j] → Knowledge Graph
-    ├── Nodes: Trial, Organization, Drug
-    └── Relationships: SPONSORED_BY, COLLABORATES_WITH, TESTS_DRUG
-```
+<img width="690" height="996" alt="image" src="https://github.com/user-attachments/assets/774f82ce-f112-4afc-8ee2-809be706011e" />
+
 
 ### Technology Stack
 
